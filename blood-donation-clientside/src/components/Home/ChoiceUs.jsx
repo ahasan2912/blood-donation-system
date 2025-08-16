@@ -4,7 +4,7 @@ import ChoiceCard from './ChoiceCard';
 
 const ChoiceUs = () => {
     return (
-        <section className="bg-gray-50 py-16">
+        <section className="bg-gray-50 py-16 px-4">
             <div className="container mx-auto">
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-bold text-red-700 text-center my-7" data-aos="fade-up">Why Choose BloodLink?</h2>

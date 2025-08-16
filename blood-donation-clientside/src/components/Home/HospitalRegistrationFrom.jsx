@@ -9,7 +9,7 @@ const HospitalRegistrationFrom = () => {
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left content: Ready to Become a Donor? */}
-                    <div data-aos="fade-right" data-aos-duration="1000">
+                    <div data-aos="fade-up" data-aos-duration="1000">
                         <h2 className="text-2xl md:text-5xl font-extrabold mb-7 leading-tight">
                             Partner with Our Blood Donation Network
                         </h2>
@@ -45,7 +45,7 @@ const HospitalRegistrationFrom = () => {
                         </ul>
                     </div>
                     {/* Right content: Become a Donor Card */}
-                    <div data-aos="fade-left" className="w-full flex justify-center items-center h-full min-h-[400px]">
+                    <div data-aos="fade-up" className="w-full flex justify-center items-center h-full min-h-[400px]">
                         <div className="bg-white text-gray-800 rounded-lg p-8 shadow-xl max-w-3xl w-full text-center border-2 border-red-500 transform transition-transform duration-300 hover:scale-105">
                             <FaHospitalSymbol className="text-red-500 text-6xl mx-auto mb-6" />
                             <h3 className="text-3xl md:text-4xl font-extrabold mb-5 leading-tight">Become a Hospital Partner!</h3>
@@ -65,3 +65,4 @@ const HospitalRegistrationFrom = () => {
 };
 
 export default HospitalRegistrationFrom;
+

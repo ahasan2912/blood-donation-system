@@ -230,6 +230,7 @@ async function run() {
             }
         });
 
+        // Nodemailer
         app.patch('/hospital/update-role/:id', async (req, res) => {
             const hospitalId = req.params.id;
             const { role } = req.body;
@@ -244,27 +245,48 @@ async function run() {
                     return res.status(404).send({ message: 'Hospital not found.' });
                 }
 
-
                 const result = await userCollection.updateOne(
-                    { email: hospital.email },
+                    { email: hospital?.email },
                     { $set: { role: role } }
                 );
+                // send Eamil
+                sendEmail(hospital?.email, {
+                    subject: 'Your Access Request Has Been Approved',
+                    message: ` 
+                    Your request to access the blood donation system has been approved by the admin. 
+                    You can now log in and proceed with your operations.
+
+                    Thank you,
+                    Admin Team
+                    `
+                })
 
                 if (result.matchedCount === 0) {
                     return res.status(404).send({ message: 'User not found with this email.' });
                 }
-
                 res.send(result);
             } catch (error) {
-                console.error("Error updating hospital role:", error);
+                console.error("Error updating hospital role:");
                 res.status(500).send({ message: 'Failed to update hospital role.', error });
             }
         });
 
-        // delete hospital role
+        // delete hospital role and NodeMailer
         app.delete('/users/hospital/:email', async (req, res) => {
             const email = req.params.email;
             const result = await userCollection.deleteOne({ email });
+
+            // send Eamil
+            sendEmail(email, {
+                subject: 'Your Access Has Been Revoked',
+                message: ` 
+                    This is to inform you that your access to the blood donation system has been deleted/revoked by the admin.
+                    If you believe this is a mistake or need further assistance, please contact the admin team.
+
+                    Thank you,
+                    Admin Team
+                    `
+            })
             res.send(result);
         });
         //delete from hospital database
@@ -447,13 +469,13 @@ async function run() {
 
             if (result?.insertedId) {
                 // send Eamil
-                /*  sendEmail(booking?.donorEmail, {
-                     subject: 'Urgent Blood Donation Request',
-                     message: `Dear ${booking?.donorName}, 
+                sendEmail(booking?.donorEmail, {
+                    subject: 'Urgent Blood Donation Request',
+                    message: `Dear ${booking?.donorName}, 
                      I urgently need blood type of ( ${booking?.donorBloodType} ). If you are available to donate, it would mean a lot. Update on the website or Phone call me if you’re able to donate. Thanks! Contract number: ${booking?.donorContact}.
                      Best regards ${booking?.recipientName}
                      `
-                 }) */
+                })
             }
             res.send(result);
         });
@@ -619,12 +641,12 @@ async function run() {
 
                 if (result?.insertedId) {
                     // send Eamil
-                    /* sendEmail(data?.recipientEmail, {
+                    sendEmail(data?.recipientEmail, {
                         subject: 'Blood Donation Confirmation',
                         message: `Dear ${data?.recipientName}, I am available and ready to donate blood. Let me know the details of where and when to come. If any problme please connectwith me ${data?.donorContact}.
                         Best regards ${data?.donorName}
                     `
-                    }) */
+                    })
                 }
 
                 res.send(result);
@@ -642,11 +664,11 @@ async function run() {
 
                 if (result?.insertedId) {
                     // send Eamil
-                    /* sendEmail(data?.recipientEmail, {
+                    sendEmail(data?.recipientEmail, {
                         subject: 'Unable to Donate',
                         message: `I am sorry to inform you that I would not be able to donate blood at this time due to personal reasons or unavailability. Please try to find another donor as soon as possible. I hope your situation improves quickly.
                         Best regards ${data?.donorName}
-                    `}) */
+                    `})
                 }
                 res.send(result);
             } catch (error) {

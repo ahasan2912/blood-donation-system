@@ -136,12 +136,6 @@ const UserManagementTable = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
                                             <button
-                                                className="text-red-600 hover:text-red-900 transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 rounded-full p-2 hover:bg-red-50 transform hover:scale-110"
-                                                title="Remove Donor"
-                                            >
-                                                <MdAddCall size={25} />
-                                            </button>
-                                            <button
                                                 onClick={() => handleDelete(user?._id)}
                                                 className="text-red-600 hover:text-red-900 transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 rounded-full p-2 hover:bg-red-50 transform hover:scale-110"
                                                 title="Remove User"

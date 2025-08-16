@@ -53,7 +53,7 @@ const FqaSection = () => {
         },
     ];
     return (
-        <div className="max-w-7xl mx-auto my-20 space-y-1">
+        <div className="max-w-7xl mx-auto my-20 space-y-1 px-4">
             {faqs.map((faq, index) => (
                 <div
                     key={index}
