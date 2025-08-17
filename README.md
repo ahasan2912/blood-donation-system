@@ -4,6 +4,8 @@ The Smart Blood Donation Platform is a full-stack application that efficiently c
 Blood donation System four roles: **Admin**,**Donor**,**Recipient** and **Hospital**.
 - **Admin Email:** ahasanhabib2912@gmail.com
 - **Admin Password:** %Diu123%
+- **Hospital Email:** daffodilmedical@gamil.com
+- **Admin Password:** %Diu123%
 
 ## 1. Admin
 - Manage users (donors, recipients, hospitals).
