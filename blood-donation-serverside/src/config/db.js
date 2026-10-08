@@ -17,15 +17,11 @@ const client = new MongoClient(uri, {
 let db;
 let collections = {};
 
-/**
- * Connect to MongoDB and initialize collections
- */
 export const connectDB = async () => {
     try {
         await client.connect();
         db = client.db('blood-donation');
         
-        // Initialize all collections
         collections = {
             users: db.collection('users'),
             donors: db.collection('donors'),
@@ -45,9 +41,6 @@ export const connectDB = async () => {
     }
 };
 
-/**
- * Get database instance
- */
 export const getDB = () => {
     if (!db) {
         throw new Error('Database not initialized. Call connectDB first.');
@@ -55,9 +48,6 @@ export const getDB = () => {
     return db;
 };
 
-/**
- * Get all collections
- */
 export const getCollections = () => {
     if (!collections || Object.keys(collections).length === 0) {
         throw new Error('Collections not initialized. Call connectDB first.');
@@ -65,9 +55,7 @@ export const getCollections = () => {
     return collections;
 };
 
-/**
- * Close database connection
- */
+
 export const closeDB = async () => {
     try {
         await client.close();
